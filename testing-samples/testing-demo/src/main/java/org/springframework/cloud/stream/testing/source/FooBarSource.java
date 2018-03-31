@@ -43,9 +43,9 @@ public class FooBarSource {
 
 	@Bean
 	@InboundChannelAdapter(channel = Source.OUTPUT, poller = @Poller(fixedDelay = "100"))
-	public MessageSource<String> fooBarStrings() {
+	public MessageSource<Object> fooBarStrings() {
 		return () ->
-				new GenericMessage<>(this.semaphore.getAndSet(!this.semaphore.get()) ? "foo" : "bar");
+				new GenericMessage<>(this.semaphore.getAndSet(!this.semaphore.get()) ? new Foo("x") : new Bar(1));
 	}
 
 	public static void main(String[] args) {

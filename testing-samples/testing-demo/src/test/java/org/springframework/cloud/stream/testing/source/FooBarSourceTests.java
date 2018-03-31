@@ -56,10 +56,10 @@ public class FooBarSourceTests {
 	public void testMessages() {
 		BlockingQueue<Message<?>> messages = this.collector.forChannel(channels.output());
 
-		assertThat(messages, receivesPayloadThat(is("foo")));
-		assertThat(messages, receivesPayloadThat(is("bar")));
-		assertThat(messages, receivesPayloadThat(is("foo")));
-		assertThat(messages, receivesPayloadThat(is("bar")));
+		assertThat(messages, receivesPayloadThat(is(new Foo("x"))));
+		assertThat(messages, receivesPayloadThat(is(new Bar(1))));
+		assertThat(messages, receivesPayloadThat(is(new Foo("x"))));
+		assertThat(messages, receivesPayloadThat(is(new Bar(1))));
 	}
 
 }
